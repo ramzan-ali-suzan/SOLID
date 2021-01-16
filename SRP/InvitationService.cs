@@ -8,16 +8,15 @@ namespace SRP
         {
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                Console.WriteLine("Name is not valid!");
+                throw new Exception("Name is not valid!");
             }
 
             if (!email.Contains("@") || !email.Contains("."))
             {
-                Console.WriteLine("Email is not valid!");
+                throw new Exception("Email is not valid!");
             }
 
-            Console.WriteLine($"Sending invitation to {firstName} {lastName}, at email {email}...");
-            Console.ReadKey();
+            Console.WriteLine($"\nSending invitation to {firstName} {lastName}, at email {email}...\n");
         }
     }
 }

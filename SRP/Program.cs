@@ -6,8 +6,30 @@ namespace SRP
     {
         static void Main(string[] args)
         {
-            var invitationService = new InvitationService();
-            invitationService.SendInvite("hasan@mail.com", "Hasan", "Imam");
+            try
+            {
+                var invitationService = new InvitationService();
+
+                while (true)
+                {
+                    // Taking input
+                    Console.WriteLine("Enter participant first name:");
+                    string firstName = Console.ReadLine();
+
+                    Console.WriteLine("Enter participant last name:");
+                    string lastName = Console.ReadLine();
+
+                    Console.WriteLine("Enter participant email address:");
+                    string email = Console.ReadLine();
+
+                    // Sending Invitation
+                    invitationService.SendInvite(email, firstName, lastName);
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }
