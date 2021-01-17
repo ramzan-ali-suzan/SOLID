@@ -1,7 +1,5 @@
 ﻿using DIP.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DIP.Services
 {
@@ -9,9 +7,9 @@ namespace DIP.Services
     {
         private readonly SMSService _smsService;
 
-        public CheckoutService()
+        public CheckoutService(SMSService smsService)
         {
-            _smsService = new SMSService();
+            _smsService = smsService;
         }
 
         private void SendConfirmationSMS(ShoppingCart shoppingCart)

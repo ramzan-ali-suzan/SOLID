@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DIP.Services.SMS;
 
 namespace DIP.Services
 {
     public class SMSService
     {
+        private readonly ISMSProvider _smsProvider;
+
+        public SMSService(ISMSProvider smsProvider)
+        {
+            _smsProvider = smsProvider;
+        }
+
         public void SendSMS(string text, string phoneNumber)
         {
-            Console.WriteLine("Sending SMS via GP:");
-            Console.WriteLine($"Receiver: {phoneNumber}");
-            Console.WriteLine($"Text: {text}");
+            _smsProvider.SendSMS(text, phoneNumber);
         }
     }
 }

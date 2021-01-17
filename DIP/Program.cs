@@ -1,6 +1,6 @@
 ﻿using DIP.Models;
 using DIP.Services;
-using System;
+using DIP.Services.SMS;
 
 namespace DIP
 {
@@ -11,7 +11,11 @@ namespace DIP
             var customer = new Customer("Fazle Rabbi", "0155667788");
             var shoppingCart = new ShoppingCart(3500, customer);
 
-            var checkoutService = new CheckoutService();
+            //var smsProvider = new GPSMSProvider();
+            var smsProvider = new RobiSMSProvider();
+            var smsService = new SMSService(smsProvider);
+
+            var checkoutService = new CheckoutService(smsService);
             checkoutService.Checkout(shoppingCart);
         }
     }
