@@ -1,8 +1,7 @@
-﻿using System;
+﻿using OCP.Models;
 using System.Collections.Generic;
-using System.Text;
 
-namespace OCP
+namespace OCP.Services
 {
     public class KitchenService
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OCP
+namespace OCP.Models
 {
     public class FriedFood : FoodItem
     {
@@ -11,7 +11,7 @@ namespace OCP
 
         public override void Prepare()
         {
-            Console.WriteLine($"Frying {this.Name}...");
+            Console.WriteLine($"Frying {Name}...");
         }
     }
 }
