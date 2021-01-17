@@ -16,6 +16,10 @@ It should be possible to change the behavior of a entity without editing its sou
 * Less likely to break dependent code
 * Fewer condition
 
+### Related branches
+* [ocp-violation](https://github.com/ramzan-ali-suzan/SOLID/tree/ocp-violation)
+* [ocp-re-factored](https://github.com/ramzan-ali-suzan/SOLID/tree/ocp-re-factored)
 
+[👈 go back](https://github.com/ramzan-ali-suzan/SOLID)
 
 
