@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DIP.Models;
+using DIP.Services;
+using System;
 
 namespace DIP
 {
@@ -6,10 +8,11 @@ namespace DIP
     {
         static void Main(string[] args)
         {
-            var calculator = new Calculator();
-            
-            Console.WriteLine(calculator.Add(5, 5));
-            Console.WriteLine(calculator.Subtract(10, 5));
+            var customer = new Customer("Fazle Rabbi", "0155667788");
+            var shoppingCart = new ShoppingCart(3500, customer);
+
+            var checkoutService = new CheckoutService();
+            checkoutService.Checkout(shoppingCart);
         }
     }
 }
