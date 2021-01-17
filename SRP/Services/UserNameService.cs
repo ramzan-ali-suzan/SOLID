@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SRP
+namespace SRP.Services
 {
     public class UserNameService
     {
