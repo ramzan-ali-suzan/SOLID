@@ -16,8 +16,8 @@ namespace DIP.Services
 
         private void SendConfirmationSMS(ShoppingCart shoppingCart)
         {
-            Console.WriteLine($"Thank you, {shoppingCart.Customer.Name} for shopping at our store." +
-                $"\nYour order of total BDT {shoppingCart.TotalAmount} has been confirmed.");
+            string message = $"Thank you, {shoppingCart.Customer.Name} for shopping at our store.\nYour order of total BDT {shoppingCart.TotalAmount} has been confirmed.";
+            _smsService.SendSMS(message, shoppingCart.Customer.PhoneNumber);
         }
 
         public void Checkout(ShoppingCart shoppingCart)
