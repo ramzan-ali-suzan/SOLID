@@ -1,4 +1,4 @@
-﻿namespace ISP
+﻿namespace ISP.Interfaces
 {
     public interface IHat
     {

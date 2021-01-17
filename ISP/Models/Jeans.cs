@@ -1,4 +1,4 @@
-﻿namespace ISP
+﻿namespace ISP.Models
 {
     public class Jeans : IProduct, IPants
     {
