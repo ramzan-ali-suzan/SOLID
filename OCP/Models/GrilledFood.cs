@@ -1,4 +1,4 @@
-﻿namespace OCP
+﻿namespace OCP.Models
 {
     public class GrilledFood : FoodItem
     {
