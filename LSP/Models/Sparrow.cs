@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LSP
+namespace LSP.Models
 {
     public class Sparrow : FlyingBird
     {

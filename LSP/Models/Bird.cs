@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LSP
+namespace LSP.Models
 {
     public class Bird
     {
