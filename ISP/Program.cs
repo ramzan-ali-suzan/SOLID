@@ -6,7 +6,8 @@ namespace ISP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var newJeans = new Jeans { Weight = 1.7, Inseam = 27, Stock = 10, WaistSize = 30 };
+            var newCaps = new BaseballCap { Weight = .3, Stock = 15, HatSize = 22 };
         }
     }
 }
