@@ -17,7 +17,7 @@ responsibility could be persistence, logging, validation or business logic
 * [srp-violation](https://github.com/ramzan-ali-suzan/SOLID/tree/srp-violation/SRP)
 * [srp-re-factored](https://github.com/ramzan-ali-suzan/SOLID/blob/srp-re-factored/SRP/README.md)
 
-[👈 go back](https://github.com/ramzan-ali-suzan/SOLID)
+[👈](https://github.com/ramzan-ali-suzan/SOLID)
 
 
 
