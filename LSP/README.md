@@ -15,6 +15,10 @@ A common example could be square–rectangle/circle–ellipse problem.
 * Keeps functionality intact
 * Subclass can be treated as base-class
 
+### Related branches
+* [lsp-violation](https://github.com/ramzan-ali-suzan/SOLID/tree/lsp-violation/LSP)
+* [lsp-re-factored](https://github.com/ramzan-ali-suzan/SOLID/tree/lsp-re-factored/LSP)
 
+[👈 go back](https://github.com/ramzan-ali-suzan/SOLID)
 
 
