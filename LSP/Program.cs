@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LSP
 {
@@ -6,7 +7,24 @@ namespace LSP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var birds = new List<Bird>
+            {
+                new Duck(),
+                new Ostrich()
+            };
+
+            // Let the birds fly
+            foreach (var bird in birds)
+            {
+                try
+                {
+                    bird.Fly();
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
         }
     }
 }
