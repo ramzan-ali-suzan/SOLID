@@ -1,4 +1,6 @@
-﻿namespace ISP
+﻿using System;
+
+namespace ISP
 {
     public class BaseballCap : IProduct
     {
@@ -6,13 +8,13 @@
         public double Weight { get; set; }
         public double WaistSize 
         { 
-            get => throw new System.NotImplementedException(); 
-            set => throw new System.NotImplementedException(); 
+            get => throw new Exception("Not needed"); 
+            set => throw new Exception("Not needed"); 
         }
         public int Inseam 
         { 
-            get => throw new System.NotImplementedException(); 
-            set => throw new System.NotImplementedException(); 
+            get => throw new Exception("Not needed"); 
+            set => throw new Exception("Not needed"); 
         }
         public int HatSize { get; set; }
     }

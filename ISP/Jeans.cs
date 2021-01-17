@@ -1,4 +1,6 @@
-﻿namespace ISP
+﻿using System;
+
+namespace ISP
 {
     public class Jeans : IProduct
     {
@@ -8,8 +10,8 @@
         public int Inseam { get; set; }
         public int HatSize 
         { 
-            get => throw new System.NotImplementedException(); 
-            set => throw new System.NotImplementedException(); 
+            get => throw new Exception("Not needed"); 
+            set => throw new Exception("Not needed"); 
         }
     }
 }
