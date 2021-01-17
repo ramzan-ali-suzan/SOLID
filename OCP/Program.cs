@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace OCP
 {
@@ -6,7 +6,15 @@ namespace OCP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var foodItems = new List<FoodItem>
+            {
+                new GrilledFood("steak"),
+                new FriedFood("chicken"),
+                new BakedFood("pizza")
+            };
+
+            var kitchenService = new KitchenService();
+            kitchenService.PrepareItems(foodItems);
         }
     }
 }
