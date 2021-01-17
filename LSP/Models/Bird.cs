@@ -1,4 +1,4 @@
-﻿namespace LSP
+﻿namespace LSP.Models
 {
     public abstract class Bird
     {
