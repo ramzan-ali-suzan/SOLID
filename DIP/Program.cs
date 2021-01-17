@@ -6,7 +6,10 @@ namespace DIP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var calculator = new Calculator();
+            
+            Console.WriteLine(calculator.Add(5, 5));
+            Console.WriteLine(calculator.Subtract(10, 5));
         }
     }
 }
