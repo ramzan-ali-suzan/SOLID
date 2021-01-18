@@ -1,4 +1,6 @@
-﻿namespace ISP.Models
+﻿using ISP.Interfaces;
+
+namespace ISP.Models
 {
     public class BaseballCap : IProduct, IHat
     {
