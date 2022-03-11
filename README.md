@@ -213,17 +213,6 @@ It should be possible to change the behavior of a entity without editing its sou
         }
     }
 
-    public class KitchenService
-    {
-        public void PrepareItems(List<FoodItem> foodItems)
-        {
-            foreach (var item in foodItems)
-            {
-                item.Prepare();
-            }
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -231,11 +220,10 @@ It should be possible to change the behavior of a entity without editing its sou
             var foodItems = new List<FoodItem>
             {
                 new GrilledFood("steak"),
-                new FriedFood("chicken"),
-                new BakedFood("pizza")
+                new FriedFood("chicken")
             };
 
-            var kitchenService = new KitchenService();
+            KitchenService kitchenService = new KitchenService();
             kitchenService.PrepareItems(foodItems);
         }
     }
@@ -285,6 +273,33 @@ It should be possible to change the behavior of a entity without editing its sou
         public override void Prepare()
         {
             Console.WriteLine($"Baking {Name}...");
+        }
+    }
+
+    public class KitchenService
+    {
+        public void PrepareItems(List<FoodItem> foodItems)
+        {
+            foreach (var item in foodItems)
+            {
+                item.Prepare();
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var foodItems = new List<FoodItem>
+            {
+                new GrilledFood("steak"),
+                new FriedFood("chicken"),
+                new BakedFood("pizza")
+            };
+
+            var kitchenService = new KitchenService();
+            kitchenService.PrepareItems(foodItems);
         }
     }
 
