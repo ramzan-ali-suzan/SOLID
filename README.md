@@ -2,7 +2,7 @@
 
 SOLID is five fundamental principles of object-oriented design for loosely coupled, testable and maintainable software.
 
-- Single Responsibility Principle (SRP)
+- [Single Responsibility Principle (SRP)](https://github.com/ramzan-ali-suzan/SOLID#single-responsibility-principle)
 - Open/Closed Principle (OCP)
 - Liskov Substitution Principle (LSP)
 - Interface Segregation Principle (ISP)
