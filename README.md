@@ -52,6 +52,8 @@ Because poor software quality costs $150+ billion per year in the US and over $5
         }
     }
 
+<br>
+
     class Program
     {
         static void Main()
@@ -96,6 +98,8 @@ Because poor software quality costs $150+ billion per year in the US and over $5
         }
     }
 
+<br>
+
     public class EmailService
     {
         public void Validate(string email)
@@ -106,6 +110,8 @@ Because poor software quality costs $150+ billion per year in the US and over $5
             }
         }
     }
+
+<br>
 
     public class InvitationService
     {
@@ -120,6 +126,8 @@ Because poor software quality costs $150+ billion per year in the US and over $5
             Console.WriteLine($"\nSending invitation to {firstName} {lastName}, at email {email}...\n");
         }
     }
+
+<br>
 
     partial class Program
     {
@@ -182,6 +190,8 @@ It should be possible to change the behavior of a entity without editing its sou
         public string Name { get; set; }
     }
 
+<br>
+
     public class FriedFood : FoodItem
     {
         public FriedFood(string name)
@@ -190,6 +200,8 @@ It should be possible to change the behavior of a entity without editing its sou
         }
     }
 
+<br>
+
     public class GrilledFood : FoodItem
     {
         public GrilledFood(string name)
@@ -197,6 +209,8 @@ It should be possible to change the behavior of a entity without editing its sou
             Name = name;
         }
     }
+
+<br>
 
     public class KitchenService
     {
@@ -212,6 +226,8 @@ It should be possible to change the behavior of a entity without editing its sou
             }
         }
     }
+
+<br>
 
     class Program
     {
@@ -237,6 +253,8 @@ It should be possible to change the behavior of a entity without editing its sou
         public abstract void Prepare();
     }
 
+<br>
+
     public class FriedFood : FoodItem
     {
         public FriedFood(string name)
@@ -249,6 +267,8 @@ It should be possible to change the behavior of a entity without editing its sou
             Console.WriteLine($"Frying {Name}...");
         }
     }
+
+<br>
 
     public class GrilledFood : FoodItem
     {
@@ -263,6 +283,8 @@ It should be possible to change the behavior of a entity without editing its sou
         }
     }
 
+<br>
+
     public class BakedFood : FoodItem
     {
         public BakedFood(string name)
@@ -276,6 +298,8 @@ It should be possible to change the behavior of a entity without editing its sou
         }
     }
 
+<br>
+
     public class KitchenService
     {
         public void PrepareItems(List<FoodItem> foodItems)
@@ -286,6 +310,8 @@ It should be possible to change the behavior of a entity without editing its sou
             }
         }
     }
+
+<br>
 
     class Program
     {
