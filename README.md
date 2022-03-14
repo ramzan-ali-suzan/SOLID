@@ -329,6 +329,147 @@ It should be possible to change the behavior of a entity without editing its sou
         }
     }
 
+# Liskov Substitution Principle
+
+> Subtypes must be substitutable for their base type
+
+LSP states that IS-A relationship is insufficient and should be replaced with IS-SUBSTITUTABLE for. This is inherently what polymorphism is about.
+
+A common example could be square–rectangle/circle–ellipse problem.
+
+### Detecting LSP violation
+
+- Type checking
+- Null checking
+- Not implemented exception
+
+### Benefits
+
+- Keeps functionality intact
+- Subclass can be treated as base-class
+
+### Example
+
+#### ❌ Violation
+
+    public abstract class Bird
+    {
+        public abstract void Fly();
+    }
+
+<br>
+
+    public class Duck : Bird
+    {
+        public override void Fly()
+        {
+            Console.WriteLine("Duck is flying...");
+        }
+    }
+
+<br>
+
+    public class Ostrich : Bird
+    {
+        public override void Fly()
+        {
+            throw new Exception("Ostrich can't fly!");
+        }
+    }
+
+<br>
+
+    class Program
+    {
+        static void Main()
+        {
+            var birds = new List<Bird>
+            {
+                new Duck(),
+                new Ostrich()
+            };
+
+            // Let the birds fly
+            foreach (var bird in birds)
+            {
+                try
+                {
+                    bird.Fly();
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
+        }
+    }
+
+#### ✅ Refactor
+
+    public abstract class Bird
+    {
+    }
+
+<br>
+
+    public abstract class FlyingBird : Bird
+    {
+        public abstract void Fly();
+    }
+
+<br>
+
+    public class Duck : FlyingBird
+    {
+        public override void Fly()
+        {
+            Console.WriteLine("Duck is flying...");
+        }
+    }
+
+<br>
+
+    public class Ostrich : Bird
+    {
+    }
+
+<br>
+
+    public class Sparrow : FlyingBird
+    {
+        public override void Fly()
+        {
+            Console.WriteLine("Sparrow is flying...");
+        }
+    }
+
+<br>
+
+    class Program
+    {
+        static void Main()
+        {
+            var flyingBirds = new List<FlyingBird>
+            {
+                new Duck(),
+                new Sparrow()
+            };
+
+            // Let the birds fly
+            foreach (var bird in flyingBirds)
+            {
+                try
+                {
+                    bird.Fly();
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
+        }
+    }
+
 ## Some great links
 
 - [🎞️ SOLID Principles for C# Developers by Steve Smith @ Pluralsight](https://app.pluralsight.com/library/courses/csharp-solid-principles/table-of-contents)
