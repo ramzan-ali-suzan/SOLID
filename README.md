@@ -624,6 +624,229 @@ Prefer small, concise interface over large fat ones.
     }
 
 
+# Dependency Inversion Principle
+
+> High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
+
+### Some related terms
+
+- **High level** more abstraction, business rules, process oriented, further from i/o
+- **Low level** closer to i/o, plumbing code
+- **New is glue**
+
+### Typical approach to DIP
+
+- Don't create your own dependencies
+- Request dependencies from client
+- Client injects dependencies as
+    - Construction arguments
+    - Properties
+    - Method arguments
+
+### Benefits
+
+- Loose coupling
+- Easier testing
+
+### Example
+
+#### ❌ Violation
+
+    public class Customer
+    {
+        public Customer(string name, string phoneNumber)
+        {
+            this.Name = name;
+            this.PhoneNumber = phoneNumber;
+        }
+
+        public string Name { get; private set; }
+        public string PhoneNumber { get; private set; }
+    }
+
+<br>
+
+    public class ShoppingCart
+    {
+        public ShoppingCart(double totalAmount, Customer customer)
+        {
+            this.TotalAmount = totalAmount;
+            this.Customer = customer;
+        }
+
+        public double TotalAmount { get; private set; }
+        public Customer Customer { get; private set; }
+    }
+
+<br>
+
+    public class SMSService
+    {
+        public void SendSMS(string text, string phoneNumber)
+        {
+            Console.WriteLine("Sending SMS via GP:");
+            Console.WriteLine($"Receiver: {phoneNumber}");
+            Console.WriteLine($"Text: {text}");
+        }
+    }
+
+<br>
+
+    public class CheckoutService
+    {
+        private readonly SMSService _smsService;
+
+        public CheckoutService()
+        {
+            _smsService = new SMSService();
+        }
+
+        private void SendConfirmationSMS(ShoppingCart shoppingCart)
+        {
+            string message = $"Thank you, {shoppingCart.Customer.Name} for shopping at our store.\nYour order of total BDT {shoppingCart.TotalAmount} has been confirmed.";
+            _smsService.SendSMS(message, shoppingCart.Customer.PhoneNumber);
+        }
+
+        public void Checkout(ShoppingCart shoppingCart)
+        {
+            Console.WriteLine($"Checking out {shoppingCart.Customer.Name}...");
+            SendConfirmationSMS(shoppingCart);
+        }
+    }
+
+<br>
+
+    class Program
+    {
+        static void Main()
+        {
+            var customer = new Customer("Fazle Rabbi", "0155667788");
+            var shoppingCart = new ShoppingCart(3500, customer);
+
+            var checkoutService = new CheckoutService();
+            checkoutService.Checkout(shoppingCart);
+        }
+    }
+
+#### ✅ Refactor
+
+    public class Customer
+    {
+        public Customer(string name, string phoneNumber)
+        {
+            this.Name = name;
+            this.PhoneNumber = phoneNumber;
+        }
+
+        public string Name { get; private set; }
+        public string PhoneNumber { get; private set; }
+    }
+
+<br>
+
+    public class ShoppingCart
+    {
+        public ShoppingCart(double totalAmount, Customer customer)
+        {
+            this.TotalAmount = totalAmount;
+            this.Customer = customer;
+        }
+
+        public double TotalAmount { get; private set; }
+        public Customer Customer { get; private set; }
+    }
+
+<br>
+
+    public interface ISMSProvider
+    {
+        public void SendSMS(string text, string phoneNumber);
+    }
+
+<br>
+
+    public class GPSMSProvider : ISMSProvider
+    {
+        public void SendSMS(string text, string phoneNumber)
+        {
+            Console.WriteLine("Sending SMS via GP:");
+            Console.WriteLine($"Receiver: {phoneNumber}");
+            Console.WriteLine($"Text: {text}");
+        }
+    }
+
+<br>
+
+    public class RobiSMSProvider : ISMSProvider
+    {
+        public void SendSMS(string text, string phoneNumber)
+        {
+            Console.WriteLine("Sending SMS via Robi:");
+            Console.WriteLine($"Receiver: {phoneNumber}");
+            Console.WriteLine($"Text: {text}");
+        }
+    }
+
+<br>
+
+    public class SMSService
+    {
+        private readonly ISMSProvider _smsProvider;
+
+        public SMSService(ISMSProvider smsProvider)
+        {
+            _smsProvider = smsProvider;
+        }
+
+        public void SendSMS(string text, string phoneNumber)
+        {
+            _smsProvider.SendSMS(text, phoneNumber);
+        }
+    }
+
+<br>
+
+    public class CheckoutService
+    {
+        private readonly SMSService _smsService;
+
+        public CheckoutService(SMSService smsService)
+        {
+            _smsService = smsService;
+        }
+
+        private void SendConfirmationSMS(ShoppingCart shoppingCart)
+        {
+            string message = $"Thank you, {shoppingCart.Customer.Name} for shopping at our store.\nYour order of total BDT {shoppingCart.TotalAmount} has been confirmed.";
+            _smsService.SendSMS(message, shoppingCart.Customer.PhoneNumber);
+        }
+
+        public void Checkout(ShoppingCart shoppingCart)
+        {
+            Console.WriteLine($"Checking out {shoppingCart.Customer.Name}...");
+            SendConfirmationSMS(shoppingCart);
+        }
+    }
+
+<br>
+
+    class Program
+    {
+        static void Main()
+        {
+            var customer = new Customer("Fazle Rabbi", "0155667788");
+            var shoppingCart = new ShoppingCart(3500, customer);
+
+            //var smsProvider = new GPSMSProvider();
+            var smsProvider = new RobiSMSProvider();
+            var smsService = new SMSService(smsProvider);
+
+            var checkoutService = new CheckoutService(smsService);
+            checkoutService.Checkout(shoppingCart);
+        }
+    }
+
+
 ## Some great links
 
 - [🎞️ SOLID Principles for C# Developers by Steve Smith @ Pluralsight](https://app.pluralsight.com/library/courses/csharp-solid-principles/table-of-contents)
