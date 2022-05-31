@@ -2,11 +2,11 @@
 
 SOLID is five fundamental principles of object-oriented design for loosely coupled, testable and maintainable software.
 
-- Single Responsibility Principle (SRP)
-- Open/Closed Principle (OCP)
-- Liskov Substitution Principle (LSP)
-- Interface Segregation Principle (ISP)
-- Dependency Inversion Principle (DIP)
+- [Single Responsibility Principle (SRP)](https://github.com/ramzan-ali-suzan/SOLID#single-responsibility-principle)
+- [Open/Closed Principle (OCP)](https://github.com/ramzan-ali-suzan/SOLID#openclosed-principle)
+- [Liskov Substitution Principle (LSP)](https://github.com/ramzan-ali-suzan/SOLID#liskov-substitution-principle)
+- [Interface Segregation Principle (ISP)](https://github.com/ramzan-ali-suzan/SOLID#interface-segregation-principle)
+- [Dependency Inversion Principle (DIP)](https://github.com/ramzan-ali-suzan/SOLID#dependency-inversion-principle)
 
 ## Why SOLID matters?
 
@@ -159,6 +159,8 @@ Because poor software quality costs $150+ billion per year in the US and over $5
             }
         }
     }
+
+[⏫ go to top](https://github.com/ramzan-ali-suzan/SOLID#-solid-principles)
 
 # Open/Closed Principle
 
@@ -329,6 +331,8 @@ It should be possible to change the behavior of a entity without editing its sou
         }
     }
 
+[⏫ go to top](https://github.com/ramzan-ali-suzan/SOLID#-solid-principles)
+
 # Liskov Substitution Principle
 
 > Subtypes must be substitutable for their base type
@@ -469,6 +473,8 @@ A common example could be square–rectangle/circle–ellipse problem.
             }
         }
     }
+
+[⏫ go to top](https://github.com/ramzan-ali-suzan/SOLID#-solid-principles)
 
 # Interface Segregation Principle
 
@@ -623,6 +629,7 @@ Prefer small, concise interface over large fat ones.
         }
     }
 
+[⏫ go to top](https://github.com/ramzan-ali-suzan/SOLID#-solid-principles)
 
 # Dependency Inversion Principle
 
@@ -846,6 +853,7 @@ Prefer small, concise interface over large fat ones.
         }
     }
 
+[⏫ go to top](https://github.com/ramzan-ali-suzan/SOLID#-solid-principles)
 
 ## Some great links
 
