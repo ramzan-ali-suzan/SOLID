@@ -470,6 +470,160 @@ A common example could be square–rectangle/circle–ellipse problem.
         }
     }
 
+# Interface Segregation Principle
+
+> Clients should not be forced to depend on methods they do not use
+
+Prefer small, concise interface over large fat ones.
+
+### Detecting ISP violation
+
+- Large interface
+- Not implemented exception
+- Code uses just a small subset of a large interface
+
+### Benefits
+
+- Loose coupling
+- Easier testing
+
+### Example
+
+#### ❌ Violation
+
+    public interface IProduct
+    {
+        public int Stock { get; set; }
+        public double Weight { get; set; }
+        public double WaistSize { get; set; }
+        public int Inseam { get; set; }
+        public int HatSize { get; set; }
+    }
+
+<br>
+
+    public class BaseballCap : IProduct
+    {
+        public int Stock { get; set; }
+        public double Weight { get; set; }
+        public double WaistSize
+        {
+            get => throw new Exception("Not needed");
+            set => throw new Exception("Not needed");
+        }
+        public int Inseam
+        {
+            get => throw new Exception("Not needed");
+            set => throw new Exception("Not needed");
+        }
+        public int HatSize { get; set; }
+    }
+ 
+ <br>
+
+    public class Jeans : IProduct
+    {
+        public int Stock { get; set; }
+        public double Weight { get; set; }
+        public double WaistSize { get; set; }
+        public int Inseam { get; set; }
+        public int HatSize
+        {
+            get => throw new Exception("Not needed");
+            set => throw new Exception("Not needed");
+        }
+    }
+
+<br>
+
+    class Program
+    {
+        static void Main()
+        {
+            var newJeans = new Jeans { Weight = 1.7, Inseam = 27, Stock = 10, WaistSize = 30 };
+            var newCaps = new BaseballCap { Weight = .3, Stock = 15, HatSize = 22 };
+
+            Console.WriteLine("Jeans details:");
+            foreach (PropertyInfo property in typeof(Jeans).GetProperties())
+            {
+                try
+                {
+                    Console.WriteLine($"{property.Name}: {property.GetValue(newJeans)}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+    }
+
+#### ✅ Refactor
+
+    public interface IProduct
+    {
+        public int Stock { get; set; }
+        public double Weight { get; set; }
+    }
+
+<br>
+
+    public interface IPants
+    {
+        public double WaistSize { get; set; }
+        public int Inseam { get; set; }
+    }
+
+<br>
+
+    public interface IHat
+    {
+        public int HatSize { get; set; }
+    }
+
+<br>
+
+    public class Jeans : IProduct, IPants
+    {
+        public int Stock { get; set; }
+        public double Weight { get; set; }
+        public double WaistSize { get; set; }
+        public int Inseam { get; set; }
+    }
+
+<br>
+
+    public class BaseballCap : IProduct, IHat
+    {
+        public int Stock { get; set; }
+        public double Weight { get; set; }
+        public int HatSize { get; set; }
+    }
+
+<br>
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var newJeans = new Jeans { Weight = 1.7, Inseam = 27, Stock = 10, WaistSize = 30 };
+            var newCaps = new BaseballCap { Weight = .3, Stock = 15, HatSize = 22 };
+
+            Console.WriteLine("Jeans details:");
+            foreach (PropertyInfo property in typeof(Jeans).GetProperties())
+            {
+                Console.WriteLine($"{property.Name}: {property.GetValue(newJeans)}");
+            }
+
+            Console.WriteLine("\nCap details:");
+            foreach (PropertyInfo property in typeof(BaseballCap).GetProperties())
+            {
+                Console.WriteLine($"{property.Name}: {property.GetValue(newCaps)}");
+            }
+        }
+    }
+
+
 ## Some great links
 
 - [🎞️ SOLID Principles for C# Developers by Steve Smith @ Pluralsight](https://app.pluralsight.com/library/courses/csharp-solid-principles/table-of-contents)
